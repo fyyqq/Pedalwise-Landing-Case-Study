@@ -4,6 +4,7 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 
 ## Round 1 (in progress)
 
+- 2026-11-05 | **Stage 4 backup** | Both final Round 1 frames copied into the section "Stage 4 · Before Round 2" (done by the Claude browser extension). Screenshot: `screens/round1-stage4-backup-in-figma.png`. Note: a locked layer ("H2 Sec...") appears in the Brand Kit layers; origin unknown.
 - 2026-11-05 | **Manual edits (Claude browser extension)** | Hero headline changed to "Bike repair near the train station", hero subline to "Book your repair on WhatsApp.", placeholder text centered. The extension also renamed a frame by mistake; caught in the screenshot and fixed. Screenshot: `screens/round1-before-after-overview.png` (top: live frames, bottom: Stage 3 archive with the old headline; the H2 label in the Brand Kit shows a selection box; clean per-frame exports will be added).
 - 2026-11-05 | **Round 1 review sent to the client** (Slack, with a view link to the Figma file).
 - 2026-11-05 | **Run 03 cleanup** | Logo no longer clipped, service card tags removed, neutral card descriptions, services subtitle set to client-confirmed wording. Verified: frame sizes, logo, tags, descriptions. Not yet verified: Brand Kit text and subtitle. Log: `agy-logs/run-03-final-cleanup.md`
