@@ -4,6 +4,8 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 
 ## Round 1 (in progress)
 
+- 2026-11-05 | **Manual edits (Claude browser extension)** | Hero headline changed to "Bike repair near the train station", hero subline to "Book your repair on WhatsApp.", placeholder text centered. The extension also renamed a frame by mistake; caught in the screenshot and fixed. Screenshot: `screens/round1-before-after-overview.png` (top: live frames, bottom: Stage 3 archive with the old headline; a text box in the Brand Kit is in edit mode, a clean export will replace this).
+- 2026-11-05 | **Round 1 review sent to the client** (Slack, with a view link to the Figma file).
 - 2026-11-05 | **Run 03 cleanup** | Logo no longer clipped, service card tags removed, neutral card descriptions, services subtitle set to client-confirmed wording. Verified: frame sizes, logo, tags, descriptions. Not yet verified: Brand Kit text and subtitle. Log: `agy-logs/run-03-final-cleanup.md`
 - 2026-11-05 | **Run 02 revision** | Invented claims removed (guarantee, VAT, turnaround times), 32px nav gap, clipped swatch fixed, spacing tokens bound. New bug found: clipped logo. Log: `agy-logs/run-02-revision-remove-invented-claims.md`
 - 2026-11-05 | **Run 01 Draft 1** | Brand Kit and Desktop 1440 (nav, hero, 4 service cards). Contained invented claims and bugs. Log: `agy-logs/run-01-brandkit-hero-desktop.md`
