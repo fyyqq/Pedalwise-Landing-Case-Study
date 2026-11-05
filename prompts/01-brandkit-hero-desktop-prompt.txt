@@ -1,0 +1,28 @@
+PROMPT 01: Brand kit + Hero + Services (Desktop 1440)
+Project: Pedalwise landing page (simulated client). Round 1.
+Run in: Antigravity CLI (agy) with the FigCraft plugin panel open in the target Figma file.
+
+----- PROMPT (as given to the agent) -----
+Check the FigCraft connection first (ping). Then, in the open Figma file, create two things.
+
+1) A frame "Brand Kit": color swatches, a type scale, and spacing tokens as Figma variables or styles.
+Colors: primary green #1E8E5A, accent orange #F28C28, text #1B2A22, background #F7FAF8, white #FFFFFF.
+Font: Inter. Spacing: 8px grid (8, 16, 24, 32, 48, 64).
+
+2) A frame "Desktop 1440", width exactly 1440, auto height, for a bike repair shop called Pedalwise. Sections:
+- Nav: simple wheel symbol + "Pedalwise", links Services, Prices, Contact, button "Chat on WhatsApp".
+- Hero: headline "Fast, honest bike repair near the station", one short subline, a "Chat on WhatsApp" button in orange, a placeholder image area.
+- Services: 4 cards, each with a name and a price: Basic tune-up $25, Full service $55, Flat tire fix $10, Brake or gear adjustment $15.
+Style: clean, friendly, light backgrounds, lots of white space, not dark or corporate. Use only the Brand Kit colors and spacing.
+
+When done, lint the design and fix every issue. Then report the exact width and height of each frame you made.
+----- END PROMPT -----
+
+WHY THESE CHOICES (from the client conversation)
+- Button says "Chat on WhatsApp": client asked for this wording after the first draft of the brief.
+- Colors: client likes green and orange, clean and friendly, not dark or corporate.
+- Width 1440 for desktop; the mobile frame (390) comes in Round 2.
+
+NOTE ADDED LATER (2026-11-05): the hero headline in this prompt ("Fast, honest bike repair near the station") was not given by the client. It was written by me, the Developer, and "fast" is an unconfirmed promise. See agy-logs/run-03-final-cleanup.md.
+
+RESULT / CRITIQUE / VERIFICATION / FIX: see notes/02-round1-draft1-verification.md and the agy-logs folder.
