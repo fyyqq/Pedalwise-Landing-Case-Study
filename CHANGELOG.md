@@ -12,7 +12,8 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 - 2026-11-05 | **Discovery** | Client brief, 6 questions, answers. Notes: `notes/01-round1-client-conversation.md`
 
 ## Open items
-- Hero headline is still the unconfirmed "Fast, honest bike repair..." and the hero subline repeats the badge (fix by hand in Figma).
-- Client review of Round 1 not sent yet.
+- Waiting for the client's Round 1 feedback (review message sent 2026-11-05).
+- Expected next: a fifth service card (E-bike repair, "ask us on WhatsApp") and a large tap target for the WhatsApp button on mobile.
 - Mobile 390 frame, contact section and footer: Round 2.
 - Late round: change requests (bug, dark mode, tablet, foldable-phone size) and full QA: Round 3.
+- Replace `screens/round1-before-after-overview.png` with clean per-frame exports.
