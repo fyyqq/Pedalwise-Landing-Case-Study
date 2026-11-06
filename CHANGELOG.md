@@ -23,6 +23,7 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
   - My own mistake: generator 74 (tighter mobile footer) had a `//` comment appended mid-line that commented out the footer link statements, so the Mobile page lost 144 footer texts (476 links, 1578 texts instead of 608 and 1722). Caught from the result line, fixed in generator 76 (block comment), loader 77. Lesson: compare result counts with the last good run after every rebuild.
   - Mobile footer: 6 links on one row (gap 8). Screenshot `screens/round7-mobile-390-footer-one-row.jpg`. Mobile rebuild result: 24 frames, 608 links, 1722 texts, overflow 0, buttons under 48 px 0, text under 14 px 0, below AA 0.
   - Link check 70 (main file after all rebuilds): Desktop 604, Mobile 604, Tablet 602 actions, total 1810 (1630 page/theme, 180 url), bad 0, missing 0. Duo page checked earlier: 602 actions, bad 0, missing 0 (not re-run after the Mobile footer rebuild, since that file was not touched).
+  - Sam replied 2026-11-07 00:13 +08 in the Blog thread: "nice looks good thanks." Developer reply (ts 1793981739.580209) with the polish changes and the still-open checks. Trello Blog cards stay in Client Review until Sam moves them.
   - Looked at by eye now: Duo Blog and News light and dark, Tablet Blog dark, Tablet News light, Mobile News light and dark, mobile nav and footer. Still NOT looked at by eye: Tablet News dark, Mobile Blog dark, Desktop dark Blog and News. Play-mode click-through still not done.
 
 ## Sam asks about the Backlog Blog cards (2026-11-06, 21:15 +08)
