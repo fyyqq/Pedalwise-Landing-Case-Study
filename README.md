@@ -2,7 +2,7 @@
 
 > **The client is simulated.** "Sam" and "Pedalwise Bike Repair" are fictional. I (the Developer) designed the page; the client's messages were written by an AI playing Sam. All phone numbers are placeholders.
 
-**Status: Round 3 of 3 done in Figma (2026-11-06); waiting on the client for the Blog scope and a final sign-off.** This README is updated after every round. See [CHANGELOG.md](CHANGELOG.md) for what is done.
+**Status: all three rounds done and signed off by the (simulated) client on 2026-11-06. The Blog page is approved as a later phase 2 and not started.** This README is updated after every round. See [CHANGELOG.md](CHANGELOG.md) for what is done.
 
 ## The project in one paragraph
 A one-page landing page for a small bike repair shop near a train station. The client wants customers to book through WhatsApp, with five services (four priced, one "ask us on WhatsApp") and a friendly green and orange look. Deliverable: one Figma file with light and dark versions of Desktop 1440, Tablet 768, Mobile 390 and an iPhone Duo (unfolded) frame, plus a Brand Kit. No login, no database, no online payments.
@@ -28,7 +28,7 @@ A one-page landing page for a small bike repair shop near a train station. The c
 |---|---|---|
 | 1 | Discovery, brand kit, hero, services (Desktop 1440) | Done (2026-11-05) |
 | 2 | Fifth service card, contact, footer, Mobile 390 frame | Done (2026-11-06) |
-| 3 | Seven client change requests: mobile contact bug, equal cards, fixed WhatsApp bar, dark mode, tablet, iPhone Duo, Blog page (scope change, estimate pending) | Design done (2026-11-06), QA pass done, waiting on client sign-off |
+| 3 | Seven client change requests: mobile contact bug, equal cards, fixed WhatsApp bar, dark mode, tablet, iPhone Duo, Blog page (scope change, estimate pending) | Done and signed off by the client (2026-11-06); Blog page parked as phase 2 |
 
 ## Key story so far: "I caught the AI inventing client promises"
 1. **Run 01:** agy built the Brand Kit and Desktop frames. Sizes and colors matched its report, but it added claims the client never made: a "30-day satisfaction guarantee", "prices include VAT", turnaround times, "Central Station". It also left a nav spacing bug and a clipped swatch while reporting 0 lint errors. ([log](agy-logs/run-01-brandkit-hero-desktop.md), [verification](notes/02-round1-draft1-verification.md))
