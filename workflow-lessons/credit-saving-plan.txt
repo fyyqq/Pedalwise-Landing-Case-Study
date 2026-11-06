@@ -1,0 +1,41 @@
+CREDIT-SAVING PLAN: how we handled free-plan limits (Pedalwise project)
+Written 2026-11-06. The client in this project is simulated. Ideas came from both the Developer (me) and the AI assistant. Results are what really happened, not what we hoped.
+
+THE PROBLEM
+- The AI design agent (Antigravity, "agy") has a usage quota on the free tier. It ran out during Round 2 and showed a countdown of about 7 days. Switching model in agy did not help (the countdown restarted at about 168 hours).
+- The Figma MCP tool, which lets the AI assistant read and edit Figma, allows only 20 calls per month on the free Starter plan. It was used up in the first hours.
+- Three of the first agy runs were spent fixing mistakes (invented client claims, a clipped logo), not building new things.
+
+IDEAS AND RESULTS
+(D = idea from the Developer, C = idea from the AI assistant)
+
+1. C: One big prompt per job, with a fixed rules block ("use ONLY these client facts, then list every text not in the facts").
+   Result: PARTLY WORKED. All text on the page matched the allowed facts, and agy built the fifth service card, the Contact section and the footer in one run. But the quota ran out halfway through the second job, so the Mobile frame was left broken (cut-off headline, missing button, squashed cards).
+   Lesson: a big prompt can leave half-finished work when the quota is nearly gone. Check the quota before a big run, and keep a backup of the file first.
+
+2. C: Reuse frames instead of redrawing (copy the Desktop frame and reflow it for mobile).
+   Result: WORKED, after one fix. A script copied the Desktop frame and made it a single column. The first result was 4061 px tall because of a leftover "grow to fill" setting; a second small script brought it to 2218 px.
+
+3. C: Match the AI model to the job (cheaper model at medium effort for small jobs).
+   Result: DID NOT WORK for the quota problem. Same error after switching. Not verified whether the quota is per model.
+
+4. C: Check results from the Developer's screenshots instead of spending Figma tool calls.
+   Result: WORKED. Screenshots caught a renamed frame, a locked layer, a broken mobile frame and an off-center text, all at zero cost.
+
+5. C: Apply for Figma Education (free for students; higher tool limits).
+   Result: NOT TRIED. Eligibility and whether it would apply to the connected account were never verified.
+
+6. D: Use the Claude browser extension to make small manual edits in Figma on the web.
+   Result: WORKED for text edits and a backup copy. It also made one mistake (it renamed a frame it was not asked to touch), which the screenshot caught. Later replaced by scripts for reliability.
+
+7. C: Write Figma scripts and run them in the free Scripter plugin (no AI quota, no Figma tool calls).
+   Result: WORKED after fixes. Problems on the way: the first line of the pasted code was cut off, the sample text had to be cleared, and the script seemed to freeze (a version with progress prints and timeouts fixed it). Four scripts are saved in the scripts/ folder.
+
+8. D: Save every finished version as a screenshot in the repo (Drive at the end), and keep a "Stage N" backup section in the Figma file before each change.
+   Result: WORKED. The backups made it safe to experiment.
+
+WHAT I WOULD DO NEXT TIME
+- Start with a backup section before every run.
+- Check the AI tool's quota before a big prompt.
+- Keep small edits (text, renames) manual or scripted; use the AI agent only for big layout jobs.
+- Verify every claim of an AI tool against the screen, and also check my own prompts (one invented claim came from my own prompt).
