@@ -24,6 +24,24 @@ return (async () => {
     { key: "mobile", page: "Mobile 390", W: 390, px: 20, cols: 1, hero2: false, h1: 36, h2: 28, body: 16, navTwo: true, steps: 1, gal: 2, sec: 56, pad: 20, gap: 16, linkGap: 8, small: true, sticky: true },
     { key: "duo", page: "iPhone Duo 669 + Tablet 768", W: 669, px: 32, cols: 2, hero2: false, h1: 44, h2: 32, body: 17, navTwo: true, steps: 3, gal: 3, sec: 64, pad: 24, gap: 20, linkGap: 20 }
   ];
+  // Round 5b: optional config set by the caller (script 39 / 40): globalThis.PW_CFG = { only: ["desktop","tablet","mobile"], pages: { tablet: "Tablet 768" } }
+  const CFG = (typeof globalThis !== "undefined" && globalThis.PW_CFG) || {};
+  for (let i = SIZES.length - 1; i >= 0; i--) {
+    if (CFG.only && CFG.only.indexOf(SIZES[i].key) === -1) SIZES.splice(i, 1);
+    else if (CFG.pages && CFG.pages[SIZES[i].key]) SIZES[i].page = CFG.pages[SIZES[i].key];
+  }
+  // Free stock photos (Unsplash License: free for commercial use, no attribution required). Credits: notes/04-photo-credits.md
+  const PHOTOS = [
+    { id: "1675798227643-da319f8ee8f7", by: "Bohdan Kadun" },
+    { id: "1675798225739-d8919b7a23f7", by: "Bohdan Kadun" },
+    { id: "1676531356064-0a527118baf4", by: "Anton Savinov" },
+    { id: "1671790639553-43973054c51e", by: "Anton Savinov" },
+    { id: "1671543565338-8b22a87b8359", by: "Anton Savinov" },
+    { id: "1684166472907-e17eec7e9475", by: "Glenn Carstens-Peters" },
+    { id: "1767193315630-6a6683df1186", by: "Paul Yong" },
+    { id: "1760310936486-4dd450aab2a8", by: "camera obscura" }
+  ];
+  const PHOTO_START = { home: 0, about: 4, services: 2 };
   const NAV = [["home", "Home"], ["about", "About"], ["services", "Services"], ["prices", "Prices"], ["contact", "Contact"]];
   const SERVICES = [
     { name: "Basic tune-up", price: "$25", desc: "A general check and adjustment." },
@@ -37,6 +55,11 @@ return (async () => {
 
   for (const s of ["Regular", "Medium", "Semi Bold", "Bold"]) await figma.loadFontAsync({ family: "Inter", style: s });
   await figma.loadAllPagesAsync();
+  const IMGS = [];
+  for (const p of PHOTOS) {
+    try { IMGS.push(await figma.createImageAsync("https://images.unsplash.com/photo-" + p.id + "?auto=format&fit=crop&w=1200&q=70&fm=jpg")); }
+    catch (e) { IMGS.push(null); log.push("photo failed " + p.id + ": " + String((e && e.message) || e).slice(0, 80)); }
+  }
 
   // ---------- small builders
   const mk = (name, dir, o) => {
@@ -153,7 +176,18 @@ return (async () => {
       if (sub) para(h, T(sub, S.body, "Regular", th.muted, { align: "CENTER", lh: 150 }), Math.min(inner, 640));
       return h;
     };
+    let phIdx = PHOTO_START[key] || 0;
     const placeholder = (label, w, h) => {
+      if (label === "Photo placeholder") {
+        const i = (phIdx++) % PHOTOS.length;
+        if (IMGS[i]) {
+          const q = mk("Photo - " + PHOTOS[i].by + " (Unsplash)", "VERTICAL", { r: 24, stroke: th.border, sa: th.borderA, fx: [shadow(th.sh * 1.2, 12, 32)] });
+          q.primaryAxisSizingMode = "FIXED"; q.counterAxisSizingMode = "FIXED"; q.resize(w || 400, h);
+          q.fills = [{ type: "IMAGE", imageHash: IMGS[i].hash, scaleMode: "FILL" }];
+          q.clipsContent = true;
+          return q;
+        }
+      }
       const p = mk("Photo Placeholder", "VERTICAL", { fill: th.card, r: 24, main: "CENTER", cross: "CENTER", gap: 10, stroke: th.border, sa: th.borderA, fx: [shadow(th.sh * 1.2, 12, 32)] });
       p.primaryAxisSizingMode = "FIXED"; p.counterAxisSizingMode = "FIXED"; p.resize(w || 400, h);
       const c = figma.createEllipse(); c.name = "Placeholder Mark"; c.resize(56, 56); c.fills = [solid(th.tint)]; c.strokes = [solid(th.border, 0.4)]; c.strokeWeight = 1;
@@ -252,7 +286,7 @@ return (async () => {
     };
     const gallerySection = () => {
       const s = section("Workshop Photos Section", sectionFill());
-      heading(s, "From the workshop", "Photos of the shop and the workshop will go here.");
+      heading(s, "Bike repair in pictures", "Stock photos for now. Photos of the shop will replace them.");
       const cols = S.gal, gap = S.gap, colW = Math.floor((inner - gap * (cols - 1)) / cols);
       const row = mk("Photo Row", "HORIZONTAL", { gap: gap, main: "CENTER" }); s.appendChild(row); fillW(row);
       for (let i = 0; i < cols; i++) { const p = placeholder("Photo placeholder", colW, Math.round(colW * 0.75)); row.appendChild(p); p.layoutSizingHorizontal = "FIXED"; }
