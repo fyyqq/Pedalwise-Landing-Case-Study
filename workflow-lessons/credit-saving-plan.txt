@@ -34,8 +34,15 @@ IDEAS AND RESULTS
 8. D: Save every finished version as a screenshot in the repo (Drive at the end), and keep a "Stage N" backup section in the Figma file before each change.
    Result: WORKED. The backups made it safe to experiment.
 
+9. D: Let an assistant drive Figma and Slack on my laptop (computer control) and run the Scripter scripts itself.
+   Result: WORKED, with limits. Chrome is view-only, full-screen Spaces block control, and the link to the laptop dropped once, which removed the access grants. Typing long code was unreliable, so a short loader line that downloads each script from this repo is typed instead (see automation-rules.txt).
+
+10. D: Check every result in a screenshot and run a read-only QA script at the end.
+   Result: WORKED. The QA script (script 16) found nav buttons 44 px high on touch frames (under the 48 px minimum) and a locked label in the Brand Kit, which no earlier check had seen. It found no overflow in any of the eight frames.
+
 WHAT I WOULD DO NEXT TIME
 - Start with a backup section before every run.
 - Check the AI tool's quota before a big prompt.
 - Keep small edits (text, renames) manual or scripted; use the AI agent only for big layout jobs.
+- Write a read-only QA script early and run it after every round, not only at the end.
 - Verify every claim of an AI tool against the screen, and also check my own prompts (one invented claim came from my own prompt).
