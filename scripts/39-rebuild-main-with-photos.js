@@ -16,10 +16,10 @@ return (async () => {
   }
   out.push("removed " + removed + " generated frames");
   globalThis.PW_CFG = { only: ["desktop", "tablet", "mobile"], pages: { tablet: "Tablet 768" } };
-  const h = { headers: { Accept: "application/vnd.github.raw" } };
-  const api = "https://api.github.com/repos/fyyqq/pedalwise-landing-case-study/contents/scripts/";
-  for (const name of ["34-build-site.js", "35-rewire-links.js"]) {
-    const src = await (await fetch(api + name + "?r=" + Date.now(), h)).text();
+  const h = {};
+  const api = "https://raw.githubusercontent.com/fyyqq/pedalwise-landing-case-study/main/scripts/";
+  for (const name of ["41-build-site-photos.js", "35-rewire-links.js"]) {
+    const src = await (await fetch(api + name, h)).text();
     const lines = [];
     await new Function("figma", "print", src)(figma, s => lines.push(String(s)));
     out.push("== " + name + " (" + src.length + " chars)\n" + lines.join("\n"));

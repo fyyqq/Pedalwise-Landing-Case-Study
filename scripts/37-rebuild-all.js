@@ -13,7 +13,7 @@ return (async () => {
   out.push("removed " + removed + " generated frames");
   const h = { headers: { Accept: "application/vnd.github.raw" } };
   const api = "https://api.github.com/repos/fyyqq/pedalwise-landing-case-study/contents/scripts/";
-  for (const name of ["34-build-site.js", "35-rewire-links.js"]) {
+  for (const name of ["41-build-site-photos.js", "35-rewire-links.js"]) {
     const src = await (await fetch(api + name + "?r=" + Date.now(), h)).text();
     const lines = [];
     await new Function("figma", "print", src)(figma, s => lines.push(String(s)));

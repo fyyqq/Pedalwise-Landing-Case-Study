@@ -11,10 +11,10 @@ return (async () => {
   for (const c of pg.children.slice()) if (c.type === "FRAME" && / - (Light|Dark) - \d+$/.test(c.name)) c.remove();
   out.push("PAGES " + figma.root.children.map(p => p.name).join(" / "));
   globalThis.PW_CFG = { only: ["duo"], pages: { duo: "iPhone Duo 669" } };
-  const h = { headers: { Accept: "application/vnd.github.raw" } };
-  const api = "https://api.github.com/repos/fyyqq/pedalwise-landing-case-study/contents/scripts/";
-  for (const name of ["34-build-site.js", "35-rewire-links.js"]) {
-    const src = await (await fetch(api + name + "?r=" + Date.now(), h)).text();
+  const h = {};
+  const api = "https://raw.githubusercontent.com/fyyqq/pedalwise-landing-case-study/main/scripts/";
+  for (const name of ["41-build-site-photos.js", "35-rewire-links.js"]) {
+    const src = await (await fetch(api + name, h)).text();
     const lines = [];
     await new Function("figma", "print", src)(figma, s => lines.push(String(s)));
     out.push("== " + name + " (" + src.length + " chars)\n" + lines.join("\n"));

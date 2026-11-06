@@ -1,4 +1,4 @@
-// Scripter script 34 (Round 5): builds the whole site on the four size pages from ONE generator, so nothing is duplicated by hand.
+// Scripter script 34, renamed 41 in Round 5b (photos, config): builds the whole site on the four size pages from ONE generator, so nothing is duplicated by hand.
 // Pages (Starter plan = 3 pages): "Desktop 1440", "Mobile 390", "iPhone Duo 669 + Tablet 768" (Duo on top, Tablet below it). Created by script 33.
 // Each page gets Home, Services, Prices, About, Contact in light (top row) and dark (bottom row) = 10 frames, fully wired:
 // menu links, logo, footer links -> the page frames; orange/green buttons -> WhatsApp URL; theme switch -> the same page in the other mode.
