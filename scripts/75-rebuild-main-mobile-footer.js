@@ -1,5 +1,5 @@
-// Scripter script 69 (Round 7, mobile nav fix): rebuild ONLY the Mobile 390 page of the MAIN file; generator 68 puts all 7 nav links on one row. Based on 66: rebuild the MAIN file ("Pedalwise Landing Page": Desktop 1440, Mobile 390, Tablet 768) with the shop.
-// Deletes every generated frame on the three pages, then runs generator 68 once per size (one size at a time, so a failure shows which size).
+// Scripter script 75 (Round 7, mobile footer links on one row): rebuild ONLY the Mobile 390 page of the MAIN file with generator 74 (based on 66/69).
+// Deletes the generated frames on Mobile 390, then runs generator 74 with only the mobile size.
 // The generator wires its own links, so script 35 is no longer run. Runs with figma and print as arguments (leading await).
 return (async () => {
   const out = [];
