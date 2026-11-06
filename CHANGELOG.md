@@ -2,6 +2,10 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Round 4 (scope changes after sign-off, in progress)
+
+- 2026-11-06 | **New client message after sign-off (3 scope changes)** | Sam asked for more pages (About, Prices, plus the Blog), a more professional look ("design too simple"), and a light/dark switch on every page. Developer reply sent in Slack the same minute: itemised estimate (Prices 6 to 8 h, About 6 to 8 h, Blog 14 to 18 h, redesign 10 to 14 h, switch 3 to 4 h; total about 39 to 52 h, 1,560 to 2,080 USD at an assumed 40 USD per hour), questions for the client (reference sites, About text, shop photos, priority), and flags: no invented About story, no fake trust badges, a working switch needs development outside the Figma-only scope. Trello: three Backlog cards. Nothing started, waiting for approval. Messages from Sam are written by the assistant; every Sam message gets a Developer reply.
+
 ## Round 3 (done, client signed off)
 
 - 2026-11-06 | **Client sign-off** | Sam (written by the assistant) signed off the landing page in Slack after the last preview; Blog stays phase 2, not started. Trello: all landing page cards in Done, Blog cards in Backlog. Remaining items are mine to finish by hand: Drive copy, Trello invite for Sam, repo public or private, LinkedIn post (draft ready).
