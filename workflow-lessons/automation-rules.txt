@@ -46,5 +46,12 @@ LIMITS FOUND ON 2026-11-06 (what real computer control cannot do)
 - The AI design agent (agy) quota and the Figma MCP (20 calls per month on Starter) are still used up. Scripter has no quota, so it stays the main tool.
 - Typing a long script into the Scripter editor may be changed by auto-indent or auto-closing brackets. To check each time: read the editor back with a screenshot before running.
 
+THE LOADER TRICK (found 2026-11-06, the fix for the typing problem)
+- Problem: the assistant typed code into the Scripter editor, and long code was garbled or dropped, which cost many retries.
+- Fix: the script is written as a file in this repo (scripts/NN-name.js), committed and pushed, and Scripter only gets one short line that downloads and runs it (see scripts/README.md). Only three short chunks are typed per script, and each result is verified in a screenshot.
+- Rule: only scripts from this repo are loaded, and every script is read before it is committed. A new file name for every fix avoids an old cached copy.
+- Another lesson: a Figma property that looks right can do nothing. Setting layoutAlign to STRETCH did not equalise card heights; layoutSizingVertical FILL did. Always check the screenshot, not just "script ran".
+- If the laptop link drops mid-run, access grants are lost and must be granted again, which can need the user. So a long unattended run can pause.
+
 RESULTS OF THE CHANGE (fill in after each round)
-- Round 3, step 1: see CHANGELOG.md.
+- Round 3 (2026-11-06): all done by script plus screenshot checks, with no pasting by me: Contact fix and equal cards (05), backup (06), sticky WhatsApp bar (07), dark mode (08, 09), tablet and iPhone Duo frames (10 to 13). Details in CHANGELOG.md.
