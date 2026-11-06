@@ -2,6 +2,13 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Round 7: Blog (2026-11-06, started 21:22 +08)
+
+- Sam approved the Blog in the same thread: "just create a blog page now with the sub menu / news single page". Developer reply sent with scope, limits and estimate 5 to 7 h (200 to 280 USD at the assumed 40 USD/h). Trello Blog scope card moved to In Progress.
+- Generator 65 (from 62): Blog menu link on every page, Blog page (tabs All / News / Repair tips, featured post, post grid), News article page (built only from client facts: services, prices, hours, WhatsApp), and a "From the blog" strip on Home. 12 pages x light and dark = 24 frames per size.
+- Mobile nav now has 7 links: link text 14 px and the row wraps if it does not fit; the mobile footer links wrap too.
+- Loaders: 66 (main file), 67 (iPhone Duo page). Script written and run offline with the mock; the Figma run is next.
+
 ## Sam asks about the Backlog Blog cards (2026-11-06, 21:15 +08)
 
 - Sam asked why the Blog cards still sit in Backlog and why progress does not continue. Developer reply in thread 1793970931.785409: the Blog is phase 2 (new scope), it waits for his go-ahead and an estimate; Done 15 and Client Review 15 cards.
