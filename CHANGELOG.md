@@ -4,6 +4,7 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 
 ## Round 2 (in progress)
 
+- 2026-11-06 | **Stage 5 backup** | Brand Kit, Desktop 1440 and Mobile 390 copied into the section "Stage 5 · Round 2 done · 2026-11-06" by script 04. Screenshot: `screens/round2-stage5-backup-in-figma.png`. Round 2 preview sent to the client (Slack).
 - 2026-11-06 | **Mobile 390 built with Scripter scripts (Plan B, no AI quota)** | Script 02 cloned Desktop 1440 into a 390-wide single-column frame (nav with one compact button, stacked hero, five stacked service cards, contact, footer). First result was 4061 px tall because of a leftover "grow" setting; script 03 fixed it (now 390x2218). Scripts: `scripts/01-read-structure.js`, `02-build-mobile-390.js`, `03-fix-mobile-hero-gap.js`. Screenshot: `screens/round2-mobile-390-script-result.png` (right: the broken agy partial frame, kept for the record). Not yet QA'd: tap-target sizes, alignment of the Contact block.
 - 2026-11-06 | **agy Run 04 (partial)** | agy applied Job 1 on Desktop 1440 (fifth card "E-bike repair / Ask us on WhatsApp", Contact section, footer) and started a Mobile 390 frame, then stopped at its usage quota. The mobile frame is broken: headline cut off, hero button missing, service cards clipped. Screenshot: `screens/round2-mobile-390-agy-partial.png`. Lesson: the agent's quota can run out halfway through a job, so one big prompt can leave a half-finished design.
 
