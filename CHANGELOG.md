@@ -9,7 +9,14 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 - Sam approved the Blog in the same thread: "just create a blog page now with the sub menu / news single page". Developer reply sent with scope, limits and estimate 5 to 7 h (200 to 280 USD at the assumed 40 USD/h). Trello Blog scope card moved to In Progress.
 - Generator 65 (from 62): Blog menu link on every page, Blog page (tabs All / News / Repair tips, featured post, post grid), News article page (built only from client facts: services, prices, hours, WhatsApp), and a "From the blog" strip on Home. 12 pages x light and dark = 24 frames per size.
 - Mobile nav now has 7 links: link text 14 px and the row wraps if it does not fit; the mobile footer links wrap too.
-- Loaders: 66 (main file), 67 (iPhone Duo page). Script written and run offline with the mock; the Figma run is next.
+- Loaders: 66 (main file), 67 (iPhone Duo page). Script written and run offline with the mock first.
+- Sam changed his mind at 22:08 +08: no more questions, "create yours using your idea". Developer reply (22:13) said honestly that the Figma run was blocked.
+- Blocker (22:05 to 23:40 +08): the Scripter plugin editor stopped showing typed text in its newest tab (junk wrapper around the saved text after a reopen). Fix: quit and reopen Figma, then reuse an older, healthy Scripter tab (Untitled 43) instead of the newest one. The "+" new-tab button still did nothing.
+- Figma Starter MCP is still at its tool-call limit (checked again 23:49 +08), so the by-eye check used desktop screenshots, not the MCP.
+- Built in Figma (23:46 to 23:49 +08), results line per size: Desktop 1440, Tablet 768, Mobile 390 and iPhone Duo 669 each 24 frames, 608 links set, overflow 0, buttons under 48 px 0, text under 14 px 0, below AA 0 (1722 texts checked). Removed 60 old generated frames in the main file and 20 on the Duo page first.
+- Looked at by eye: Blog Desktop light and News article Desktop light (fine), Mobile Blog nav (6 links on the first row, "Contact" wraps to a second row: works, a little unbalanced). NOT looked at by eye: dark frames, Tablet, Duo, the rest of the Mobile Blog and News pages. Play-mode click-through and link check 49 not re-run.
+- Screenshots: `screens/round7-blog-desktop-light-overview.jpg`, `screens/round7-news-article-desktop-light.jpg`, `screens/round7-mobile-390-nav-7-links-wrap.jpg`.
+- Limits (told to Sam): all post titles and texts are draft samples, one article page only, tabs All / News / Repair tips are design only (not linked), photos are the same free stock photos as before, the article page has no share row.
 
 ## Sam asks about the Backlog Blog cards (2026-11-06, 21:15 +08)
 
