@@ -2,6 +2,11 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Sam asks about the Backlog Blog cards (2026-11-06, 21:15 +08)
+
+- Sam asked why the Blog cards still sit in Backlog and why progress does not continue. Developer reply in thread 1793970931.785409: the Blog is phase 2 (new scope), it waits for his go-ahead and an estimate; Done 15 and Client Review 15 cards.
+- Process bug: my watch missed this message for about 4 minutes because the channel check used the `oldest` filter, which returned nothing. Fix: each check now reads the latest messages without `oldest` and compares timestamps. Trello comment added on the Blog scope card.
+
 ## Trello board example (2026-11-06)
 
 - Fyqq's screenshot of the Trello board "Pedalwise Landing Page" (Backlog, In Progress, Client Review, Done) is stored as `screens/round6d-trello-board-workflow-progress-example.png`. It shows the workflow progress example for the case study.
