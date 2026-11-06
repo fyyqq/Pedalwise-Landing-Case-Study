@@ -2,6 +2,10 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Trello board example (2026-11-06)
+
+- Fyqq's screenshot of the Trello board "Pedalwise Landing Page" (Backlog, In Progress, Client Review, Done) is stored as `screens/round6d-trello-board-workflow-progress-example.png`. It shows the workflow progress example for the case study.
+
 ## Round 6c (map and logo requests, in progress)
 
 - 2026-11-06 | **Round 6d: logo B applied and an illustrated road map** | Sam (19:58 +08): "The logo option using option B, the map image placeholder was wrong, should use similiar to this image i provided" (his image: a Google-style road map with green parks, water, roads and a red pin A). **Logo B (P tile):** a rounded green tile with a white P and an orange wheel dot, now in the menu (28 px), footer (24 px) and the logo chips on the merchandise photos (20 px, so the P text stays 14 px) on all four sizes, light and dark; the tile frame carries the fill so the contrast check sees white on green (4.57:1). **Map:** the stock photos are gone; the Home, About and Contact map spots now show a map I draw in Figma (generator code, own drawing): parks, a lake, a river, minor and main roads, a pink focus area, a red pin and a "Pedalwise / Bike repair" label; caption "Sample map illustration. The real map of the shop replaces it once the address is confirmed." Streets are made up, not the real location, and I did not copy a Google screenshot (Google restricts that). **Scripts:** `scripts/59-build-site-shop.js` first run (overflow check counted the clipped road segments: 12 / 36 / 30 on Desktop / Tablet / Mobile, not a visible overflow), `62-build-site-shop.js` fixes the check to skip the clipped map drawing; loaders 60 and 61 (59), 63 (main) and 64 (Duo) run 62. **Checks (Scripter, final run 62, all four sizes):** overflow 0, buttons under 48 px 0, text under 14 px 0, below AA 0. Looked at: Desktop Contact light (map and logo), Mobile Contact light, About map and merch chips (logo shows). **Not looked at by eye:** dark frames, Tablet and Duo, Home map. **Not re-run:** link check 49. Screenshots: `screens/round6d-*.jpg`.
