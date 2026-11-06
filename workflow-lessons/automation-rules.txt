@@ -1,0 +1,50 @@
+AUTOMATION RULES: from manual steps to a Claude-driven workflow (Pedalwise project)
+Written 2026-11-06. The client (Sam) is simulated. These rules describe how the work is split between the Developer (me) and the AI assistant, and what the assistant may and may not do on its own.
+
+WHY THIS FILE EXISTS
+Rounds 1 and 2 were mostly manual: I pasted every script into Figma and every client message into Slack, and I took screenshots to check the result. Free-plan limits (see credit-saving-plan.txt) made the AI design tools unusable for days. In Round 3 I asked the assistant to take over the repetitive steps on my laptop through computer control. This file records the rules we agreed so the change is easy to follow and to audit.
+
+TIMELINE
+- Round 1: manual. AI agent (agy) designs, I paste prompts, I screenshot, the assistant reads my screenshots.
+- Round 2: free Figma plugin (Scripter) runs scripts the assistant wrote. I paste each script and screenshot the result.
+- Round 3 (this file): the assistant opens Scripter, types the script, runs it, takes its own screenshots, checks them, and answers the client in the Slack app. I only step in where the rules below say so.
+
+THE LOOP (one change at a time)
+1. Read the client message in Slack and the Trello card for the change.
+2. Make a backup first: a new "Stage N" section in Figma (script 04 pattern). No change without a backup.
+3. Write the Figma script and save it in scripts/ in this repo with a number and a short name.
+4. Run it in Scripter. Read the printed output.
+5. Take a screenshot of the result and look at it myself. Never trust the script's own "done" message.
+6. Fix and re-run if something is wrong. Keep the failed attempts in the log.
+7. Save the screenshot in screens/, add one line to CHANGELOG.md, update the README if the round table changes, and commit to GitHub.
+8. Move the Trello card (Backlog, In Progress, Client Review, Done).
+9. Send the Developer update to the client in Slack, then tell me what was sent.
+
+WHO DOES WHAT
+- Assistant: writes scripts, runs them in Figma Desktop, takes and checks screenshots, writes the log and the CHANGELOG line, commits to GitHub, moves Trello cards, posts the Developer message in the project Slack channel, and replies as Sam in the Slack desktop app (signed in as the simulated client account).
+- Developer (me): signs in to accounts, types any password or login code, decides scope and price questions, invites people, approves anything outside the project, and does the final check and the LinkedIn post.
+
+WHAT STAYS MANUAL (on purpose)
+- Passwords, login codes and tokens. The assistant is not allowed to type them, even if I ask.
+- Creating accounts, inviting people to Trello, changing sharing settings, deleting data.
+- Anything outside this project: other Slack channels, other people, real client data.
+- Spending money (paid plans, Figma Education, plugins).
+- Moving files into Google Drive at the end.
+
+SAFETY RULES
+- Backup before every change (Stage N section in Figma).
+- Client facts only. No invented prices, claims, hours or guarantees. Every text must come from the client's own words. One invented claim in this project came from my own prompt, so I check my prompts too.
+- The assistant reports what it did and what it could not verify. Unverified means unverified.
+- The assistant tells me every time it posts to the client. Sam's messages are written by the assistant only because the client is simulated and the Slack workspace is mine.
+- No secrets in the repo: no emails, tokens, settings files or personal paths. The repo is public.
+- A failed step is logged, not hidden.
+
+LIMITS FOUND ON 2026-11-06 (what real computer control cannot do)
+- Browsers (Chrome) are view-only for the assistant: it can look but not click or type. So the Slack desktop app is used for Sam, not the browser.
+- Figma Desktop and the Slack app must be on a normal desktop Space. A full-screen Space blocks background control.
+- Login pages open in the browser, so the sign-in for Sam was done by me.
+- The AI design agent (agy) quota and the Figma MCP (20 calls per month on Starter) are still used up. Scripter has no quota, so it stays the main tool.
+- Typing a long script into the Scripter editor may be changed by auto-indent or auto-closing brackets. To check each time: read the editor back with a screenshot before running.
+
+RESULTS OF THE CHANGE (fill in after each round)
+- Round 3, step 1: see CHANGELOG.md.

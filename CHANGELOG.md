@@ -2,6 +2,11 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Round 3 (in progress)
+
+- 2026-11-06 | **Automation rules** | `workflow-lessons/automation-rules.txt`: how the work moved from manual pasting to an assistant that drives Figma and Slack on my laptop, what stays manual (logins, money, scope), and the limits found (browsers are view-only, full-screen Spaces block control).
+- 2026-11-06 | **Client change requests received (7)** | Contact alignment bug on mobile, orange border on one card, fixed WhatsApp button on mobile, dark mode, tablet 768, iPhone Duo size, Blog page (scope change, estimate later). Developer triage reply sent in Slack; Trello cards created.
+
 ## Round 2 (in progress)
 
 - 2026-11-06 | **Workflow lessons** | `workflow-lessons/credit-saving-plan.txt`: the problem with free-plan limits, each idea (mine and the AI's) and what actually happened.
