@@ -40,5 +40,6 @@ Twelve more free Unsplash photos for the sample shop products. Same licence note
 | 18 | Pedalwise tote bag | beige-eco-bag-1Pgq9ZpIatI | Kelly Sikkema | 1544816155-12df9643f363 |
 | 19 | Pedalwise water bottle | black-mizu-stainless-steel-tumbler-dGIEMeN2MV8 | Karl Köhler | 1544003484-3cd181d17917 |
 | 20 | Map placeholder replacement (train station, Home, About, Contact) | a-train-station-with-a-train-on-the-tracks-PmTU15rQGgA | Sugarman Joe | 1692342380430-6fa4010758bb |
+| 21 | Map picture (Home, About, Contact; replaces row 20 on 2026-11-06 19:37) | person-placing-red-pin-on-city-map-Z8UgB80_46w | GeoJango Maps | 1619468129361-605ebea04b44 |
 
 **Not verified:** the Free label and the subject were read from the Unsplash search listings (alt text), not from each photo page. After placing them in Figma I looked at them at small size: bikes, helmets, a wall of locks, a bike light, a white T-shirt, a grey cap, a paper tote and a steel bottle look right. The "road bike" photo is a dark bike on a dark background and could be swapped. Locks and lights are borderline matches to the product names.
