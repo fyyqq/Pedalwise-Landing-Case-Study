@@ -4,6 +4,8 @@ One line per page, feature or fix. Newest first. Dates are 2026. The client is s
 
 ## Round 3 (in progress)
 
+- 2026-11-06 | **Mobile Contact alignment and equal service cards** | Script `scripts/05-fix-contact-and-equal-cards.js`, typed into Scripter and run by the assistant (no paste by me). Contact block on Mobile 390 is now left-aligned and full width (headline, button, phone, hours, location); the "Full service" card lost its 2 px accent border, so all five cards (desktop and mobile) share one style. Verified from a screenshot the assistant took: `screens/round3-mobile-contact-and-cards-fixed.jpg`. Not yet checked: the dark-mode, tablet, iPhone Duo and fixed WhatsApp button changes. Process notes: typing long code into the Scripter editor breaks unless it is sent in chunks of about 100 characters with a wait between them, and a first run can hide its output when the plugin window sits behind the Dock.
+
 - 2026-11-06 | **Automation rules** | `workflow-lessons/automation-rules.txt`: how the work moved from manual pasting to an assistant that drives Figma and Slack on my laptop, what stays manual (logins, money, scope), and the limits found (browsers are view-only, full-screen Spaces block control).
 - 2026-11-06 | **Client change requests received (7)** | Contact alignment bug on mobile, orange border on one card, fixed WhatsApp button on mobile, dark mode, tablet 768, iPhone Duo size, Blog page (scope change, estimate later). Developer triage reply sent in Slack; Trello cards created.
 
