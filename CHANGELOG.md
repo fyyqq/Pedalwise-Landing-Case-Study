@@ -2,6 +2,10 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## Round 2 (in progress)
+
+- 2026-11-06 | **agy Run 04 (partial)** | agy applied Job 1 on Desktop 1440 (fifth card "E-bike repair / Ask us on WhatsApp", Contact section, footer) and started a Mobile 390 frame, then stopped at its usage quota. The mobile frame is broken: headline cut off, hero button missing, service cards clipped. Screenshot: `screens/round2-mobile-390-agy-partial.png`. Lesson: the agent's quota can run out halfway through a job, so one big prompt can leave a half-finished design.
+
 ## Round 1 (in progress)
 
 - 2026-11-05 | **Stage 4 backup** | Both final Round 1 frames copied into the section "Stage 4 · Before Round 2" (done by the Claude browser extension). Screenshot: `screens/round1-stage4-backup-in-figma.png`. Note: a locked layer ("H2 Sec...") appears in the Brand Kit layers; origin unknown.
