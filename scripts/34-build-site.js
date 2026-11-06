@@ -44,6 +44,7 @@ return (async () => {
     const f = figma.createFrame();
     f.name = name;
     f.layoutMode = dir;
+    f.primaryAxisSizingMode = "AUTO"; f.counterAxisSizingMode = "AUTO"; // a new frame is 100 x 100 FIXED by default: hug content instead
     f.fills = o.fill ? [solid(o.fill)] : [];
     f.itemSpacing = o.gap || 0;
     f.paddingTop = o.py || 0; f.paddingBottom = o.py || 0; f.paddingLeft = o.px || 0; f.paddingRight = o.px || 0;
