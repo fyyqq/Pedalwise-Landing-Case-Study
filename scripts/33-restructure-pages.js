@@ -1,23 +1,22 @@
-// Scripter script 33 (Round 5): one Figma page per size.
-// Creates the pages "Brand Kit", "Desktop 1440", "Tablet 768", "Mobile 390", "iPhone Duo 669" and renames the old "Page 1" to
-// "Archive (old versions)" (it keeps every old frame and the Stage backups, nothing is deleted). The Brand Kit frame moves to its own page.
-// Order of pages: Brand Kit, Desktop, Tablet, Mobile, iPhone Duo, Archive. Runs with figma and print as arguments (leading await).
+// Scripter script 33 (Round 5): page structure for the new design. The Figma Starter plan allows only 3 pages per file
+// (createPage fails with "The Starter plan only comes with 3 pages"), so the file now holds exactly three pages:
+//   "Desktop 1440", "Mobile 390", "iPhone Duo 669 + Tablet 768".
+// The old frames, the Stage backups and the Brand Kit were copied to the separate file "Pedalwise Archive and Brand Kit"
+// before this script ran, and removed from "Page 1" by hand. This script only renames and orders pages (no page is created).
+// Runs with figma and print as arguments (leading await).
 return (async () => {
   const out = [];
   await figma.loadAllPagesAsync();
   const root = figma.root;
-  const arch = root.children.find(p => p.name === "Page 1" || p.name.indexOf("Archive") === 0);
-  if (!arch) { print("no 'Page 1' or Archive page found: " + root.children.map(p => p.name).join(" / ")); return; }
   const get = n => root.children.find(p => p.name === n);
-  const mk = n => { let p = get(n); if (!p) { p = figma.createPage(); p.name = n; out.push("created " + n); } return p; };
-  const brandPage = mk("Brand Kit");
-  const names = ["Desktop 1440", "Tablet 768", "Mobile 390", "iPhone Duo 669"];
-  names.forEach(mk);
-  arch.name = "Archive (old versions)";
-  const brand = arch.children.find(c => c.name.indexOf("Brand Kit") === 0);
-  if (brand) { brandPage.appendChild(brand); out.push("moved Brand Kit frame"); } else out.push("no Brand Kit frame found on the old page");
-  const order = ["Brand Kit"].concat(names).concat(["Archive (old versions)"]);
-  order.forEach((n, i) => { try { root.insertChild(i, get(n)); } catch (e) { out.push("order failed for " + n + ": " + e.message); } });
+  const p1 = get("Page 1") || get("Mobile 390");
+  const bk = get("Brand Kit") || get("iPhone Duo 669 + Tablet 768");
+  const dk = get("Desktop 1440");
+  if (!p1 || !bk || !dk) { print("pages not as expected: " + root.children.map(p => p.name).join(" / ")); return; }
+  for (const p of [p1, bk, dk]) if (p.children.length) out.push("WARNING " + p.name + " still has " + p.children.length + " layers");
+  p1.name = "Mobile 390";
+  bk.name = "iPhone Duo 669 + Tablet 768";
+  [dk, p1, bk].forEach((p, i) => { try { root.insertChild(i, p); } catch (e) { out.push("order failed for " + p.name + ": " + e.message); } });
   out.push("PAGES " + root.children.map(p => p.name + " (" + p.children.length + ")").join(" / "));
   print(out.join("\n"));
 })();

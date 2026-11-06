@@ -1,5 +1,5 @@
 // Scripter script 34 (Round 5): builds the whole site on the four size pages from ONE generator, so nothing is duplicated by hand.
-// Pages: "Desktop 1440", "Tablet 768", "Mobile 390", "iPhone Duo 669" (created by script 33, must be empty).
+// Pages (Starter plan = 3 pages): "Desktop 1440", "Mobile 390", "iPhone Duo 669 + Tablet 768" (Duo on top, Tablet below it). Created by script 33.
 // Each page gets Home, Services, Prices, About, Contact in light (top row) and dark (bottom row) = 10 frames, fully wired:
 // menu links, logo, footer links -> the page frames; orange/green buttons -> WhatsApp URL; theme switch -> the same page in the other mode.
 // Text only uses facts the client gave (service names, prices, hours, location, phone, About text). Process steps are marked "Draft wording".
@@ -20,9 +20,9 @@ return (async () => {
   };
   const SIZES = [
     { key: "desktop", page: "Desktop 1440", W: 1440, px: 120, cols: 3, hero2: true, h1: 64, h2: 40, body: 18, navTwo: false, steps: 3, gal: 3, sec: 96, pad: 28, gap: 24, linkGap: 28 },
-    { key: "tablet", page: "Tablet 768", W: 768, px: 40, cols: 2, hero2: false, h1: 48, h2: 34, body: 17, navTwo: true, steps: 3, gal: 3, sec: 72, pad: 24, gap: 20, linkGap: 24 },
+    { key: "tablet", page: "iPhone Duo 669 + Tablet 768", W: 768, px: 40, cols: 2, hero2: false, h1: 48, h2: 34, body: 17, navTwo: true, steps: 3, gal: 3, sec: 72, pad: 24, gap: 20, linkGap: 24 },
     { key: "mobile", page: "Mobile 390", W: 390, px: 20, cols: 1, hero2: false, h1: 36, h2: 28, body: 16, navTwo: true, steps: 1, gal: 2, sec: 56, pad: 20, gap: 16, linkGap: 8, small: true, sticky: true },
-    { key: "duo", page: "iPhone Duo 669", W: 669, px: 32, cols: 2, hero2: false, h1: 44, h2: 32, body: 17, navTwo: true, steps: 3, gal: 3, sec: 64, pad: 24, gap: 20, linkGap: 20 }
+    { key: "duo", page: "iPhone Duo 669 + Tablet 768", W: 669, px: 32, cols: 2, hero2: false, h1: 44, h2: 32, body: 17, navTwo: true, steps: 3, gal: 3, sec: 64, pad: 24, gap: 20, linkGap: 20 }
   ];
   const NAV = [["home", "Home"], ["about", "About"], ["services", "Services"], ["prices", "Prices"], ["contact", "Contact"]];
   const SERVICES = [
@@ -343,7 +343,10 @@ return (async () => {
     const pg = figma.root.children.find(p => p.name === S.page);
     if (!pg) { log.push("MISSING page " + S.page); continue; }
     await figma.setCurrentPageAsync(pg);
-    if (pg.children.length) { log.push(S.page + " already has " + pg.children.length + " layers, skipped"); continue; }
+    // a shared page (Duo + Tablet): the new frames go below what is already there
+    let baseY = 0;
+    for (const c of pg.children) baseY = Math.max(baseY, c.y + c.height + 500);
+    if (pg.children.some(c => c.name.indexOf(" - " + S.W) !== -1)) { log.push(S.page + " already has " + S.W + " frames, skipped"); continue; }
     const frames = {}, ctxs = {};
     try {
       for (const mode of ["light", "dark"]) for (const [k, lab] of NAV) {
@@ -353,8 +356,8 @@ return (async () => {
       }
     } catch (e) { log.push(S.key + " BUILD FAILED: " + e.message + " | " + String(e.stack || "").split("\n").slice(0, 3).join(" / ")); continue; }
     let maxH = 0;
-    NAV.forEach(([k], i) => { const f = frames[k + "|light"]; f.x = i * (S.W + 160); f.y = 0; maxH = Math.max(maxH, f.height); });
-    NAV.forEach(([k], i) => { const f = frames[k + "|dark"]; f.x = i * (S.W + 160); f.y = maxH + 300; });
+    NAV.forEach(([k], i) => { const f = frames[k + "|light"]; f.x = i * (S.W + 160); f.y = baseY; maxH = Math.max(maxH, f.height); });
+    NAV.forEach(([k], i) => { const f = frames[k + "|dark"]; f.x = i * (S.W + 160); f.y = baseY + maxH + 300; });
     // wiring
     let nLinks = 0, nFail = 0;
     for (const id of Object.keys(frames)) {
@@ -367,7 +370,7 @@ return (async () => {
         try { await l.node.setReactionsAsync([{ trigger: { type: "ON_CLICK" }, actions: [action] }]); nLinks++; } catch (e) { nFail++; if (nFail < 3) log.push("link failed: " + e.message); }
       }
     }
-    try { pg.flowStartingPoints = [{ nodeId: frames["home|light"].id, name: "Light site" }, { nodeId: frames["home|dark"].id, name: "Dark site" }]; } catch (e) { log.push(S.page + " flow start failed: " + e.message); }
+    try { pg.flowStartingPoints = pg.flowStartingPoints.concat([{ nodeId: frames["home|light"].id, name: S.W + " light site" }, { nodeId: frames["home|dark"].id, name: S.W + " dark site" }]); } catch (e) { log.push(S.page + " flow start failed: " + e.message); }
     // checks
     let over = 0, small = 0, tiny = 0, tot = 0, fails = 0; const seen = {};
     const bgOf = n => { let p = n.parent; while (p && p.type !== "PAGE") { if (p.type !== "TEXT" && "fills" in p && p.fills !== figma.mixed) { const s = p.fills.filter(q => q.type === "SOLID" && q.visible !== false && (q.opacity === undefined || q.opacity === 1)); if (s.length) return s[s.length - 1].color; } p = p.parent; } return rgb("#ffffff"); };
