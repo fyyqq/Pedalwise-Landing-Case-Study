@@ -1,0 +1,294 @@
+/*
+Theme Name: Pedalwise
+Theme URI: https://github.com/fyyqq/pedalwise-landing-case-study
+Author: Fyqq
+Description: Block theme for the Pedalwise bike repair site (a simulated client project). Colors and fonts live in theme.json; layout, the four breakpoints and dark mode live in this file.
+Version: 1.0.0
+Requires at least: 6.5
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: pedalwise
+*/
+
+/* =====================================================================
+   1. TOKENS
+   Breakpoints match the four Figma sizes:
+   Desktop 1440 (>= 1200) | Tablet 768 (768-1199) | iPhone Duo 669 (600-767) | Mobile 390 (< 600)
+   ===================================================================== */
+:root {
+	--pw-content: 1200px;
+	--pw-px: 120px;          /* side padding of every section */
+	--pw-sec: 96px;          /* top and bottom padding of a section */
+	--pw-sec-gap: 40px;      /* gap between a section header and its content */
+	--pw-gap: 24px;          /* gap between cards */
+	--pw-pad: 28px;          /* padding inside a card */
+	--pw-h1: 64px;
+	--pw-h2: 40px;
+	--pw-body: 18px;
+	--pw-img: 220px;         /* product and category photo height */
+	--pw-hero-img: 400px;
+	--pw-border: rgba(30, 142, 90, 0.25);
+	--pw-border-strong: rgba(30, 142, 90, 0.6);
+	--pw-shadow: rgba(0, 0, 0, 0.08);
+	--pw-track: #dcebe2;
+	--pw-knob: #ffffff;
+	--pw-sun: #f28c28;
+}
+@media (max-width: 1199px) {
+	:root { --pw-px: 40px; --pw-sec: 72px; --pw-gap: 20px; --pw-pad: 24px; --pw-h1: 48px; --pw-h2: 34px; --pw-body: 17px; --pw-img: 200px; --pw-hero-img: 320px; }
+}
+@media (max-width: 767px) {
+	:root { --pw-px: 32px; --pw-sec: 64px; --pw-h1: 44px; --pw-h2: 32px; --pw-img: 180px; }
+}
+@media (max-width: 599px) {
+	:root { --pw-px: 20px; --pw-sec: 56px; --pw-sec-gap: 28px; --pw-gap: 16px; --pw-pad: 20px; --pw-h1: 36px; --pw-h2: 28px; --pw-body: 16px; --pw-img: 140px; --pw-hero-img: 240px; }
+}
+
+/* Dark mode: the same palette slugs, new values. Blocks use the slugs, so everything switches at once.
+   (The header switch sets data-theme on <html>; the first visit follows the visitor's system setting.) */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+	color-scheme: dark;
+	--wp--preset--color--bg: #0f1713;
+	--wp--preset--color--alt: #0b110e;
+	--wp--preset--color--card: #1a2620;
+	--wp--preset--color--tint: #12201a;
+	--wp--preset--color--ink: #e8f0eb;
+	--wp--preset--color--muted: #a9bcb1;
+	--wp--preset--color--green-text: #4fd08f;
+	--wp--preset--color--price: #4fd08f;
+	--wp--preset--color--banner: #164a33;
+	--wp--preset--color--footer: #070b09;
+	--pw-border: rgba(79, 208, 143, 0.3);
+	--pw-border-strong: rgba(79, 208, 143, 0.6);
+	--pw-shadow: rgba(0, 0, 0, 0.35);
+	--pw-track: #24352c;
+	--pw-knob: #e8f0eb;
+	--pw-sun: #a9bcb1;
+}
+
+/* =====================================================================
+   2. BASE
+   ===================================================================== */
+.wp-site-blocks { padding: 0; }
+body :is(p, h1, h2, h3, h4, h5, h6, figure) { margin-block: 0; }
+:where(.pw-main, .pw-header, .pw-footer) a { text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--wp--preset--color--orange); outline-offset: 2px; }
+.pw-muted, .pw-sub, .pw-lead { color: var(--wp--preset--color--muted); }
+.pw-small { font-size: 14px; }
+.pw-center { text-align: center; }
+.pw-h1 { font-size: var(--pw-h1); line-height: 1.12; letter-spacing: -0.015em; }
+.pw-h2 { font-size: var(--pw-h2); line-height: 1.15; letter-spacing: -0.015em; }
+.pw-h3 { font-size: 20px; line-height: 1.25; font-weight: 600; letter-spacing: 0; }
+.pw-h3--sm { font-size: 18px; }
+.pw-lead { font-size: calc(var(--pw-body) + 2px); line-height: 1.5; max-width: 520px; }
+.pw-sub { font-size: var(--pw-body); line-height: 1.5; max-width: 640px; }
+.pw-price { font-size: 28px; font-weight: 700; color: var(--wp--preset--color--price); }
+.pw-price--sm { font-size: 22px; }
+.pw-eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--wp--preset--color--green-text); }
+.pw-eyebrow a { text-decoration: none; }
+.pw-link a { display: inline-block; padding: 12px 4px; font-weight: 600; text-decoration: underline; }
+.pw-caption { max-width: 640px; line-height: 1.5; }
+.pw-info__value { font-size: 20px; font-weight: 600; line-height: 1.3; }
+
+/* "Draft wording" pills from the Figma review. Add  .pw-draft { display: none; }  (Appearance > Editor > Styles > Additional CSS) before launch. */
+.pw-pill { display: inline-block; width: fit-content; padding: 4px 12px; border: 1.5px solid var(--wp--preset--color--orange); border-radius: 999px; font-size: 14px; font-weight: 500; line-height: 1.5; }
+
+/* =====================================================================
+   3. SECTIONS
+   ===================================================================== */
+.pw-section { box-sizing: border-box; padding: var(--pw-sec) var(--pw-px); }
+.pw-inner { box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: var(--pw-sec-gap); width: 100%; max-width: var(--pw-content); margin-inline: auto; }
+.pw-inner > * { width: 100%; max-width: none; margin-inline: 0; }
+.pw-page-header, .pw-section--banner { display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: calc(var(--pw-sec) * 0.8); }
+.pw-page-header { gap: 16px; }
+.pw-section--banner { gap: 20px; }
+.pw-page-header > *, .pw-section--banner > * { max-width: none; margin-inline: 0; }
+.pw-section--banner .pw-h2, .pw-section--banner .pw-sub { color: #ffffff; }
+.pw-section--strip { padding-block: 28px; }
+.pw-head { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; max-width: none; }
+.pw-head .pw-sub, .pw-page-header .pw-sub { max-width: 640px; }
+hr.wp-block-separator.pw-bar { width: 56px !important; max-width: 56px; height: 4px; margin: 0 !important; border: 0; border-radius: 2px; background: var(--wp--preset--color--price); opacity: 1; }
+
+/* hero */
+.pw-hero__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.pw-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.pw-hero__text .pw-h1 { max-width: none; }
+.pw-hero__photo { margin: 0; }
+.pw-hero__photo img { display: block; width: 100%; height: var(--pw-hero-img); object-fit: cover; border-radius: 24px; border: 1px solid var(--pw-border); box-shadow: 0 12px 32px var(--pw-shadow); }
+.pw-badge { padding: 8px 14px; border: 1px solid var(--pw-border); border-radius: 999px; background: var(--wp--preset--color--card); color: var(--wp--preset--color--muted); font-size: 14px; font-weight: 500; line-height: 1.5; }
+@media (min-width: 1200px) {
+	.pw-hero__body { grid-template-columns: minmax(0, 1fr) 520px; gap: 64px; align-items: center; }
+	.pw-hero__photo img { height: 400px; }
+}
+
+/* info strip */
+.pw-card.pw-strip { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding: 18px var(--pw-pad); }
+.pw-strip__item { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.pw-strip__item::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--wp--preset--color--price); }
+@media (max-width: 1199px) { .pw-card.pw-strip { flex-direction: column; align-items: flex-start; } }
+
+/* =====================================================================
+   4. CARDS AND GRIDS
+   A grid is a wrapping row: every row has equal-height cards and a short last row is centered, like the Figma frames.
+   ===================================================================== */
+.pw-grid { --cols: 3; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--pw-gap); max-width: none; }
+.pw-grid > * { box-sizing: border-box; flex: 0 0 calc((100% - (var(--cols) - 1) * var(--pw-gap)) / var(--cols)); min-width: 0; margin: 0; }
+.pw-grid--services { --cols: 3; }
+.pw-grid--steps { --cols: 3; }
+.pw-grid--info { --cols: 3; }
+.pw-grid--faq { --cols: 2; }
+.pw-grid--shop { --cols: 4; }
+.pw-grid--cats { --cols: 3; }
+.pw-grid--gallery { --cols: 3; }
+@media (max-width: 1199px) { .pw-grid--services, .pw-grid--shop { --cols: 2; } }
+@media (max-width: 599px) {
+	.pw-grid--services, .pw-grid--steps, .pw-grid--info, .pw-grid--faq, .pw-grid--cats { --cols: 1; }
+	.pw-grid--shop, .pw-grid--gallery { --cols: 2; }
+	.pw-grid--gallery > :nth-child(3) { display: none; } /* Figma shows 2 photos on phones, so no photo sits alone */
+}
+
+.pw-card { box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; padding: var(--pw-pad); border: 1px solid var(--pw-border); border-radius: 20px; box-shadow: 0 10px 28px var(--pw-shadow); }
+.pw-card--media { padding: 0; gap: 0; overflow: hidden; }
+.pw-card__body { box-sizing: border-box; display: flex; flex-direction: column; flex: 1; gap: 12px; padding: 18px; }
+.pw-card__body > * { max-width: none; }
+.pw-card__media { position: relative; }
+.pw-card__photo, .pw-card__media figure { margin: 0; }
+.pw-card__photo img, .pw-card__media img { display: block; width: 100%; height: var(--pw-img); object-fit: cover; }
+.pw-card__body .pw-buttons { margin-top: auto; }
+.pw-card__body .wp-block-button { width: 100%; }
+.pw-gallery__photo { margin: 0; }
+.pw-gallery__photo img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 24px; border: 1px solid var(--pw-border); box-shadow: 0 12px 32px var(--pw-shadow); }
+@media (max-width: 599px) { .pw-card__body { padding: 12px; } .pw-product .pw-h3 { font-size: 16px; } .pw-product .pw-price { font-size: 20px; } }
+
+.pw-step-num { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; font-weight: 700; }
+.pw-chip { position: absolute; left: 10px; bottom: 10px; display: flex; flex-direction: row; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: #ffffff; color: #1b2a22; font-size: 14px; font-weight: 700; }
+.pw-chip p { color: #1b2a22; }
+.pw-chip .pw-logo-mark { --s: 20px; }
+
+/* price list, contact card, map */
+.pw-price-list { max-width: 760px !important; margin-inline: auto !important; gap: 0; padding-inline: calc(var(--pw-pad) + 8px); }
+.pw-price-row { display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--pw-border); }
+.pw-price-row:last-child { border-bottom: 0; }
+.pw-price-row__name { font-size: 20px; font-weight: 600; }
+.pw-price-row .pw-link a { padding: 0; }
+@media (max-width: 599px) { .pw-price-row__name { font-size: 17px; } .pw-price-row .pw-price { font-size: 24px; } }
+.pw-contact-card { max-width: 640px !important; margin-inline: auto !important; align-items: center; gap: 14px; padding: calc(var(--pw-pad) + 12px); border-radius: 24px; text-align: center; }
+.pw-contact-card .pw-buttons { justify-content: center; }
+.pw-map { display: flex; align-items: center; justify-content: center; height: 260px; border: 1px solid var(--pw-border); border-radius: 24px; box-shadow: 0 12px 32px var(--pw-shadow); background-color: #f1efe9;
+	background-image: radial-gradient(circle at 18% 32%, #c3e2b6 0 13%, transparent 13.5%), radial-gradient(circle at 84% 22%, #a9d4e6 0 12%, transparent 12.5%), radial-gradient(circle at 50% 55%, rgba(232, 167, 154, 0.5) 0 20%, transparent 20.5%),
+		linear-gradient(112deg, transparent 47%, #ffffff 47% 49%, transparent 49%), linear-gradient(8deg, transparent 38%, #fce5a6 38% 41%, transparent 41%), linear-gradient(100deg, transparent 62%, #f9b872 62% 64%, transparent 64%); }
+.pw-map__label { color: #46584e; font-size: 14px; font-weight: 500; }
+@media (max-width: 599px) { .pw-map { height: 180px; } }
+
+/* =====================================================================
+   5. BUTTONS (every button is at least 48 px high)
+   ===================================================================== */
+.pw-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; }
+.pw-btn .wp-block-button__link { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 15px 24px; border-radius: 12px; font-size: 16px; font-weight: 600; line-height: 1.4; text-align: center; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); }
+.pw-btn--orange .wp-block-button__link { box-shadow: 0 6px 16px rgba(242, 140, 40, 0.35); }
+.pw-btn--lg .wp-block-button__link { padding: 17px 32px; font-size: 18px; }
+.pw-btn--full, .pw-btn--full .wp-block-button__link { width: 100%; }
+.wp-block-button.pw-btn--outline > .wp-block-button__link { background: var(--wp--preset--color--card); color: var(--wp--preset--color--ink); border: 1.5px solid var(--pw-border-strong); box-shadow: 0 2px 6px var(--pw-shadow); }
+@media (max-width: 599px) {
+	.pw-btn .wp-block-button__link { font-size: 15px; padding-inline: 16px; }
+	.pw-btn--lg .wp-block-button__link { font-size: 18px; padding-inline: 32px; }
+	.pw-hero__text .pw-buttons { flex-direction: column; align-items: stretch; width: 100%; }
+	.pw-hero__text .wp-block-button, .pw-hero__text .wp-block-button__link { width: 100%; }
+}
+.pw-chips { justify-content: center; }
+.pw-chips .wp-block-button__link, .wp-block-button.pw-btn--outline.pw-chips .wp-block-button__link { border-radius: 999px; padding: 15px 18px; font-size: 15px; }
+.pw-chips .pw-btn .wp-block-button__link { border-radius: 999px; padding: 15px 18px; font-size: 15px; }
+
+/* =====================================================================
+   6. HEADER, FOOTER, LOGO, THEME SWITCH
+   ===================================================================== */
+.pw-header { box-sizing: border-box; padding: 16px var(--pw-px); box-shadow: 0 2px 12px var(--pw-shadow); position: relative; z-index: 5; }
+.pw-header__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; max-width: var(--pw-content); margin-inline: auto; }
+.pw-header__actions { display: flex; align-items: center; gap: 16px; }
+@media (max-width: 1199px) {
+	.pw-header { padding-block: 12px; }
+	.pw-header .pw-nav { order: 3; flex: 0 0 100%; }
+	.pw-header .pw-nav .wp-block-navigation__container { justify-content: center; }
+}
+@media (max-width: 599px) {
+	.pw-header__cta { display: none; }
+	.pw-header__actions { gap: 10px; }
+	.pw-header .pw-nav .wp-block-navigation__container { width: 100%; justify-content: space-between; gap: 6px; }
+}
+
+.pw-nav .wp-block-navigation__container { gap: 28px; }
+.pw-nav .wp-block-navigation-item__content { display: block; padding: 10px 2px; font-size: 16px; font-weight: 500; color: var(--wp--preset--color--ink); text-decoration: none; }
+.pw-nav .wp-block-navigation-item__content:hover { text-decoration: underline; }
+.pw-nav .wp-block-navigation-item__content[aria-current="page"] { font-weight: 700; color: var(--wp--preset--color--green-text); text-decoration: underline; }
+@media (max-width: 1199px) { .pw-nav .wp-block-navigation__container { gap: 24px; } }
+@media (max-width: 767px) { .pw-nav .wp-block-navigation__container { gap: 20px; } }
+@media (max-width: 599px) { .pw-nav .wp-block-navigation-item__content { padding: 12px 0; font-size: 14px; } }
+
+.pw-logo { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.pw-logo__text, .pw-logo__text a { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.2; text-decoration: none; color: var(--wp--preset--color--ink); }
+.pw-logo--footer .pw-logo__text { font-size: 20px; color: var(--wp--preset--color--footer-text); }
+@media (max-width: 599px) { .pw-logo__text, .pw-logo__text a { font-size: 20px; } }
+/* logo B: green tile, white P, orange wheel dot (size set by --s) */
+.pw-logo-mark { --s: 28px; position: relative; flex: none; display: flex; align-items: center; justify-content: center; width: var(--s); height: var(--s); border-radius: calc(var(--s) * 26 / 96); overflow: visible; }
+.pw-logo-mark p { font-size: max(14px, calc(var(--s) * 0.7)); font-weight: 700; line-height: 1; color: #ffffff; }
+.pw-logo-mark::after { content: ""; position: absolute; left: calc(var(--s) * 63 / 96); top: calc(var(--s) * 63 / 96); width: calc(var(--s) * 26 / 96); height: calc(var(--s) * 26 / 96); box-sizing: content-box; border: max(1px, calc(var(--s) * 5 / 96)) solid var(--wp--preset--color--green); border-radius: 50%; background: var(--wp--preset--color--orange); }
+.pw-logo-mark--sm { --s: 24px; }
+
+.pw-theme-switch { position: relative; flex: none; width: 56px; height: 32px; padding: 0; border: 1px solid var(--pw-border-strong); border-radius: 16px; background: var(--pw-track); cursor: pointer; }
+.pw-theme-switch::after { content: ""; position: absolute; inset: -8px -4px; } /* makes the touch area 48 px high */
+.pw-theme-switch__knob { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--pw-knob); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease; }
+.pw-theme-switch__sun { position: absolute; top: 10px; left: 10px; z-index: 1; width: 10px; height: 10px; border-radius: 50%; background: var(--pw-sun); transition: transform 0.2s ease; }
+html[data-theme="dark"] .pw-theme-switch__knob, html[data-theme="dark"] .pw-theme-switch__sun { transform: translateX(24px); }
+@media (prefers-reduced-motion: reduce) { .pw-theme-switch__knob, .pw-theme-switch__sun { transition: none; } }
+
+.pw-footer { box-sizing: border-box; padding: 40px var(--pw-px); }
+.pw-footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; max-width: var(--pw-content); margin-inline: auto; }
+.pw-footer .pw-nav .wp-block-navigation__container { gap: 20px; }
+.pw-footer .pw-nav .wp-block-navigation-item__content { color: var(--wp--preset--color--footer-text); font-size: 16px; padding: 10px 2px; }
+.pw-footer .pw-nav .wp-block-navigation-item__content[aria-current="page"] { color: var(--wp--preset--color--footer-text); }
+@media (max-width: 1199px) { .pw-footer__inner { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 599px) { .pw-footer .pw-nav .wp-block-navigation__container { gap: 8px; } .pw-footer .pw-nav .wp-block-navigation-item__content { padding-inline: 0; } }
+
+/* sticky WhatsApp bar: phones only (the header button is hidden there) */
+.pw-sticky-wa { display: none; }
+@media (max-width: 599px) {
+	.pw-sticky-wa { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 12px 16px; box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15); }
+	.pw-sticky-wa .pw-buttons { width: 100%; }
+	body { padding-bottom: 76px; }
+}
+
+/* =====================================================================
+   7. BLOG
+   ===================================================================== */
+.pw-posts .wp-block-post-template { display: flex !important; flex-wrap: wrap; justify-content: center; gap: var(--pw-gap); margin: 0; padding: 0; list-style: none; }
+.pw-posts .wp-block-post-template > li { --cols: 3; box-sizing: border-box; display: flex; flex: 0 0 calc((100% - (var(--cols) - 1) * var(--pw-gap)) / var(--cols)); min-width: 0; margin: 0; }
+@media (max-width: 1199px) { .pw-posts .wp-block-post-template > li { --cols: 2; } }
+@media (max-width: 599px) { .pw-posts .wp-block-post-template > li { --cols: 1; } }
+.pw-post { width: 100%; }
+.pw-post__img { margin: 0 !important; }
+.pw-post__img img { display: block; width: 100%; height: 190px; object-fit: cover; }
+@media (max-width: 599px) { .pw-post__img img { height: 160px; } }
+.pw-post .wp-block-post-title { font-size: 20px; line-height: 1.25; }
+.pw-post .wp-block-post-title a { text-decoration: none; color: var(--wp--preset--color--ink); }
+.pw-post .wp-block-post-excerpt__more-link { display: none; }
+.pw-posts .wp-block-query-pagination { margin-top: 32px; gap: 12px; }
+.pw-posts .wp-block-query-pagination a { display: inline-block; padding: 12px 14px; font-weight: 600; }
+
+.pw-article { display: flex; flex-direction: column; gap: 22px; max-width: 760px; margin-inline: auto !important; }
+.pw-article > * { max-width: none; margin-inline: 0; }
+.pw-article .pw-h1--article { font-size: calc(var(--pw-h1) - 8px); }
+.pw-article__meta { display: flex; flex-direction: row; gap: 8px; }
+.pw-article__photo img { display: block; width: 100%; height: 400px; object-fit: cover; border-radius: 24px; border: 1px solid var(--pw-border); }
+.pw-article__body { font-size: calc(var(--pw-body) + 1px); line-height: 1.6; }
+.pw-article__body > * + * { margin-top: 22px; }
+.pw-article__body h2 { font-size: 26px; line-height: 1.25; }
+.pw-article__body p { color: var(--wp--preset--color--muted); }
+.pw-price-table table { width: 100%; border-collapse: collapse; }
+.pw-price-table td { padding: 14px 16px; border: 0; border-bottom: 1px solid var(--pw-border); font-size: 17px; font-weight: 600; }
+.pw-price-table td:last-child a { font-size: 16px; }
+.pw-price-table td:last-child { text-align: right; font-size: 22px; font-weight: 700; color: var(--wp--preset--color--price); }
+.pw-quote { margin-inline: 0; padding: 18px 24px; border: 1px solid var(--pw-border); border-radius: 16px; background: var(--wp--preset--color--tint); }
+.pw-quote p { color: var(--wp--preset--color--ink); font-size: 24px; font-weight: 700; line-height: 1.3; }
+@media (max-width: 599px) { .pw-article__photo img { height: 220px; } .pw-quote p { font-size: 20px; } }

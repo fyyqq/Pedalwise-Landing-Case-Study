@@ -47,6 +47,7 @@ A one-page landing page for a small bike repair shop near a train station. The c
 | `agy-logs/` | Each agy run: prompt, response, my verification |
 | `screens/` | Screenshots of each stage and of every Round 3 change |
 | `scripts/` | Figma Plugin API scripts for Scripter, numbered in run order (README inside) |
+| `wordpress/` | The WordPress version: block theme, one markup file per page, setup script, generator (README inside) |
 | `workflow-lessons/` | Free-plan problems and fixes, and the automation rules |
 | `CHANGELOG.md` | One line per page or feature done |
 

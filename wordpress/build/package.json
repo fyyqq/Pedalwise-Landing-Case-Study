@@ -1,0 +1,11 @@
+{
+  "name": "pedalwise-wordpress-build",
+  "private": true,
+  "description": "Generates the WordPress block markup (pages, posts, templates) with the real core block serializers, then validates it.",
+  "scripts": { "build": "node generate.cjs" },
+  "dependencies": {
+    "@wordpress/block-library": "12.1.0",
+    "@wordpress/blocks": "17.1.0",
+    "jsdom": "^26.0.0"
+  }
+}

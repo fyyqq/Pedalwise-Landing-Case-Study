@@ -2,6 +2,16 @@
 
 One line per page, feature or fix. Newest first. Dates are 2026. The client is simulated.
 
+## WordPress build (2026-11-09, started after sign-off of all pages)
+
+- Fyqq asked for the fastest way to turn the Figma design into WordPress, instead of installing plugins and building each page by hand (about a week). Chosen route: **one block theme + generated page markup**, no page-builder plugin. Everything is in `wordpress/` (start with `wordpress/README.md`).
+- **Theme** `wordpress/theme/pedalwise/` (zip: `wordpress/pedalwise-theme.zip`): `theme.json` with the Figma palette and the self-hosted Inter font, `style.css` with the four breakpoints (1200 / 768 / 600, matching 1440 / 768 / 669 / 390), dark mode through the same palette slugs, logo B and the light/dark switch, header and footer as template parts, templates for pages, blog, archive and single post.
+- **Pages** (`wordpress/pages/`): Home, About, Services, Prices, Shop, Contact as core-block markup for the Code editor. Blog and news article are real posts: Query Loop in the templates plus 7 sample posts (`wordpress/posts/`). `wordpress/setup.sh` (WP-CLI) creates it all in one run; the dry run against a fake `wp` ran through, the real run is untested.
+- **How the markup was made**: `wordpress/build/generate.cjs` builds the pages with WordPress's own block code (`@wordpress/block-library` 12.1.0), reads the output back and checks every block is valid (all valid). Two things found on the way: the Custom HTML block saves nothing in that package version, so no page uses it (the dark switch is created by `theme.js`); a palette slug named `text` collides with WordPress's `has-text-color` class, so the slug is `ink`; the paragraph "align" attribute is not saved as a class in every version, so centering is a theme class.
+- **Checked** in a local browser preview (`wordpress/build/preview.cjs`: real core block CSS + theme CSS + stand-ins for menu and post query): all 8 page types at 1440 / 768 / 669 / 390, light and dark: no horizontal overflow, every button at least 48 px high. Looked at by eye: Home at 1440, 768 and 390, Prices at 1440, single post dark at 768. Bugs found by eye and fixed: info strip stacked in a column on desktop, a lone third gallery photo on phones, the Prices sentence not centered.
+- **Not verified**: anything on a real WordPress (no WordPress was reachable); Unsplash photos (the preview uses grey pictures); WooCommerce; the Site Editor view.
+- **Left out on purpose** (listed with reasons in `wordpress/README.md`): newsletter field, header cart button, Product / Cart / Checkout / Confirmation pages (they come from WooCommerce), blog featured post, shop filtering.
+
 ## Round 7: Blog (2026-11-06, started 21:22 +08)
 
 - Trello workflow progress, step 2: board screenshot with the Blog scope card in In Progress (Backlog 1, In Progress 1, Client Review 15, Done 15), stored as `screens/round7-trello-board-blog-in-progress.png`. Step 1 is `screens/round6d-trello-board-workflow-progress-example.png` (Blog cards still in Backlog).
